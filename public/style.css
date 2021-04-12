@@ -37,6 +37,8 @@ video {
   object-fit: cover;
   border-radius: 40px;
   margin: 10px;
+  /* -webkit-transform: scaleX(-1);
+  transform: scaleX(-1); */
 }
 
 .main__controls {
