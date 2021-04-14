@@ -1,24 +1,43 @@
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
-const { v4: uuidv4 } = require('uuid')
+const shortId = require('shortid')
 const io = require('socket.io')(server)
 const { ExpressPeerServer } = require('peer')
+const bodyParser = require('body-parser')
 const peerServer = ExpressPeerServer(server, {
   debug: true
 })
 const port = 3000
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use('/peerjs', peerServer)
 
 app.get('/', (req, res) => {
-  res.redirect(`/${uuidv4()}`)
+  res.render('index')
+})
+
+app.post('/create-room', (req, res) => {
+  const { name } = req.body
+  const randomId = shortId.generate()
+  const uid = shortId.generate()
+  res.redirect(`/${randomId}?uid=${uid}&name=${name}`)
+})
+
+app.post('/join-room', (req, res) => {
+  const { name, roomId } = req.body
+  const uid = shortId.generate()
+  res.redirect(`/${roomId}?uid=${uid}&name=${name}`)
 })
 
 app.get('/:room', (req, res) => {
-  res.render('room', { roomId: req.params.room })
+  res.render('room', { roomId: req.params.room, query: req.query })
 })
 
 io.on('connection', socket => {
@@ -29,7 +48,11 @@ io.on('connection', socket => {
     socket.on('message', message => {
       io.to(roomId).emit('createMessage', message)
     })
+    socket.on('disconnect', () => {
+      socket.broadcast.to(roomId).emit('user-disconnected', userId)
+    })
   })
+
 })
 
 server.listen(port, () => {

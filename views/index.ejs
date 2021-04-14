@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main_join">
+    <div class="action_rooms">
+      <button class="btn action_rooms__btn" onClick="joinRoom()">JOIN ROOM</button>
+      <button class="btn action_rooms__btn" onClick="createRoom()">CREATE ROOM</button>
+    </div>
+
+    <form action="/join-room" method="POST" class="form_join" style="display: none;">
+      <p>Join Room</p>
+      <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+      <input type="text" class="form-control" name="roomId" id="roomId" placeholder="Code meeting" required>
+      <button class="btn">JOIN</button>
+    </form>
+    
+    <form action="/create-room" method="POST" class="form_create" style="display: none;">
+      <p>Create Room</p>
+      <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+      <button class="btn">Create</button>
+    </form>
+  </div>
+
+  <script src="form.js"></script>
+</body>
+</html>
