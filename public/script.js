@@ -22,7 +22,6 @@ navigator.mediaDevices.getUserMedia({
     call.answer(stream)
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
-      console.log(userVideoStream);
       addVideoStream(video, userVideoStream)
     })
   })
@@ -32,14 +31,27 @@ navigator.mediaDevices.getUserMedia({
   })
 
   // input value for message
+  const sendButton = document.querySelector('.send_message')
   let text = document.getElementById('chat_message')
-  text.addEventListener('keydown', e => {
-    let value = e.target.value
+  let value
+  text.addEventListener('keyup', e => {
+    value = e.target.value
     if (e.key == "Enter" && value.length !== 0) {
-      socket.emit('message', { value, username, uid })
-      text.value = ''
+      sendMessage()
     }
   })
+
+  sendButton.addEventListener('click', () => {
+    if (value !== "") {
+      sendMessage()
+    }
+  })
+
+  const sendMessage = () => {
+    socket.emit('message', { value, username, uid })
+    text.value = ''
+    value = ''
+  }
   // show message to dom
   socket.on('createMessage', message => {
     let messages = document.querySelector('.messages')
@@ -93,7 +105,7 @@ const addVideoStream = (video, stream) => {
 // auto scroll to bottom at chat window
 const scrollToBottom = () => {
   let d = document.querySelector('.main__chat_window')
-  d.scrollTop = d.scrollHeight;
+  d.scrollTop = d.scrollHeight
 }
 
 const muteUnmute = () => {
@@ -137,3 +149,27 @@ const setPlayVideo = () => {
   const html = `<i class="stop fas fa-video-slash"></i>`
   document.querySelector('.main__video_button').innerHTML = html;
 }
+
+// show and hide main right
+const messageIcon = document.querySelector('.message_icon')
+messageIcon.addEventListener('click', () => {
+  document.querySelector('.main__right').classList.toggle('hide')
+  document.querySelector('.main__left').classList.toggle('is-full-width')
+})
+
+// copy code meet
+const codeMeetEl = document.getElementById('code_meet')
+const copyEl = document.getElementById('copy')
+copyEl.addEventListener('click', () => {
+  const textarea = document.createElement('textarea')
+  const codeMeet = codeMeetEl.innerText
+
+  if (!codeMeet) return;
+
+  textarea.value = codeMeet
+  document.body.appendChild(textarea)
+  textarea.select()
+  document.execCommand('copy')
+  textarea.remove()
+  alert('code meet copied')
+})

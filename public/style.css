@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
+  background-color: #1a1f25;
+  overflow-x: hidden;
 }
 
 .main {
@@ -11,10 +16,14 @@ body {
 }
 
 .main__left {
+  width: 100%;
   display: flex;
-  flex: 0.8;
   flex-direction: column;
-  background-color: #1a1f25;
+  transition: all 0.3s ease;
+}
+
+.main__left.is-full-width {
+  margin-right: -380px;
 }
 
 .main__videos {
@@ -41,6 +50,7 @@ video {
   transform: scaleX(-1); */
 }
 
+/* button controls */
 .main__controls {
   display: flex;
   color: #d2d2d2;
@@ -58,20 +68,18 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
   height: 20px;
-  min-width: 20px;
+  min-width: 50px;
   margin: 6px;
   cursor: pointer;
   background-color: #222631;
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
 }
-
 .main__controls_button:hover {
   transform: scale(1.1);
 }
-
 .main__controls_button i {
   font-size: 1rem;
 }
@@ -80,11 +88,63 @@ video {
   color: #f12548;
 }
 
+.navbar {
+  width: 100%;
+  box-shadow: 0 4px 3px -2px rgba(0, 0, 0, 0.3);
+  color: #ddd;
+  padding: 0 1rem 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .message_icon {
+  font-size: 1.2rem;
+}
+
+.subheader {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 14px;
+  padding: 12px 24px 12px 24px;
+}
+
+/* copy code meet */
+.code_meet {
+  width: 160px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 10px 14px 10px;
+  background-color: #1f262e;
+  border-radius: 4px;
+  color: #ccc;
+}
+.code_meet button {
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+}
+
+/* right */
 .main__right {
-  flex: 0.2;
+  width: 380px;
+  height: 100vh;
+  min-width: 250px;
   background-color: #1f262e;
   display: flex;
   flex-direction: column;
+  border-radius: 30px 0 0 30px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.main__right.hide {
+  transform: translateX(380px);
 }
 
 .main__header {
@@ -93,6 +153,7 @@ video {
   text-align: center;
 }
 
+/* chat message */
 .main__chat_window {
   flex: 1;
   overflow-y: auto;
@@ -108,7 +169,7 @@ video {
 }
 
 .message {
-  margin: 10px;
+  margin: 0 0 10px 0;
   padding: 10px;
   background-color: #252c34;
   border-radius: 10px 10px 0px 10px;
@@ -117,12 +178,10 @@ video {
   max-width: 90%;
   z-index: 100;
 }
-
 .message b {
   font-size: 12px;
   color: #ddd;
 }
-
 .message.green {
   background-color: #51b56d;
 }
@@ -130,17 +189,23 @@ video {
 .main__message_container {
   padding: 22px 12px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
 .main__message_container input {
-  flex-grow: 1;
+  width: 100%;
   background-color: transparent;
   border: 1px solid #888888;
-  border-radius: 10px;
+  border-radius: 14px;
   outline: none;
   color: #f5f5f5;
-  height: 20px;
+  height: 40px;
   padding: 10px;
+  margin-right: 10px;
+}
+.main__message_container .send_message {
+  font-size: 2rem;
+  color: #51b56d;
 }
 
 /* input */
@@ -150,13 +215,16 @@ video {
   border-radius: 10px;
   outline: none;
   color: #f5f5f5;
-  height: 20px;
+  height: 40px;
   padding: 10px;
   font-size: 14px;
+  margin-right: 3px;
 }
 
+/* button */
 .btn {
-  padding: 14px;
+  padding: 10px;
+  height: 40px;
   border: none;
   background-color: #51b56d;
   color: #fff;
@@ -173,15 +241,31 @@ video {
 }
 
 /* home page */
-.main_join {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+#home {
   background-color: #1f262e;
   height: 100vh;
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  height: 100vh;
+}
+
+.main_join {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.home_image {
+  width: 600px;
+}
+
+/* form */
 form {
   margin: 10px;
 }

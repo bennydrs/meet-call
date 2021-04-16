@@ -11,6 +11,16 @@
 <body>
   <div class="main">
     <div class="main__left">
+      <nav class="navbar">
+        <h2>Meet Call</h2>
+        <i class="fas fa-comment-dots message_icon"></i>
+      </nav>
+      <div class="subheader">
+        <div class="code_meet">
+          <span id="code_meet"><%= roomId %></span>
+          <button id="copy"><i class="fas fa-copy"></i></button>
+        </div>
+      </div>
       <div class="main__videos">
         <div class="video-grid" id="video-grid"></div>
       </div>
@@ -39,6 +49,7 @@
       </div>
       <div class="main__message_container">
         <input type="text" id="chat_message" placeholder="Type message here...">
+        <i class="fab fa-telegram-plane send_message"></i>
       </div>
     </div>
   </div>
