@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -8,18 +9,23 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #1a1f25;
   overflow-x: hidden;
+  max-height: 100vh;
+  width: 100vw;
 }
 
 .main {
-  height: 100vh;
+  width: 100%;
   display: flex;
+  overflow-x: hidden;
 }
 
 .main__left {
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
+  overflow-x: hidden;
 }
 
 .main__left.is-full-width {
@@ -37,12 +43,16 @@ body {
 .video-grid {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 video {
   height: 300px;
   width: 350px;
+  max-width: 100%;
+  min-width: 250px;
   object-fit: cover;
   border-radius: 40px;
   margin: 10px;
@@ -83,13 +93,13 @@ video {
 .main__controls_button i {
   font-size: 1rem;
 }
-
 .leave {
   color: #f12548;
 }
 
 .navbar {
   width: 100%;
+  height: 70px;
   box-shadow: 0 4px 3px -2px rgba(0, 0, 0, 0.3);
   color: #ddd;
   padding: 0 1rem 0 1rem;
@@ -99,6 +109,10 @@ video {
 }
 .navbar .message_icon {
   font-size: 1.2rem;
+}
+.navbar h3 {
+  color: #51b56d;
+  font-size: 1.6rem;
 }
 
 .subheader {
@@ -134,6 +148,7 @@ video {
 .main__right {
   width: 380px;
   height: 100vh;
+  max-width: 380px;
   min-width: 250px;
   background-color: #1f262e;
   display: flex;
@@ -141,16 +156,23 @@ video {
   border-radius: 30px 0 0 30px;
   padding: 10px;
   transition: all 0.3s ease;
-}
-
-.main__right.hide {
   transform: translateX(380px);
+}
+.main__right.show {
+  transform: translateX(0);
 }
 
 .main__header {
-  padding-top: 5px;
+  padding: 0 1rem 0 1rem;
   color: #f5f5f5;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close {
+  display: none !important;
 }
 
 /* chat message */
@@ -159,15 +181,12 @@ video {
   overflow-y: auto;
   padding: 10px;
 }
-
 .messages {
   color: white;
 }
-
 .messageLine {
   display: flex;
 }
-
 .message {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -252,7 +271,7 @@ video {
   align-items: center;
   max-width: 1200px;
   margin: auto;
-  height: 100vh;
+  height: calc(100vh - 70px);
 }
 
 .main_join {
@@ -262,6 +281,7 @@ video {
 }
 
 .home_image {
+  max-width: 100%;
   width: 600px;
 }
 
@@ -271,4 +291,67 @@ form {
 }
 form p {
   color: #ddd;
+}
+
+.form_create {
+  display: none;
+}
+.form_join {
+  display: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .main__right {
+    min-width: 100%;
+    width: 100%;
+    border-radius: 0;
+    transform: translateX(0);
+    position: fixed;
+  }
+  .main__right.show {
+    transform: translateX(420px);
+  }
+  .main__videos {
+    padding: 10px;
+  }
+  video {
+    margin: 2px;
+    width: 170px;
+    min-width: 160px;
+    max-width: 180px;
+    height: 160px;
+    min-height: 140px;
+    max-width: 200px;
+  }
+  .close {
+    display: block !important;
+  }
+  .subheader {
+    margin: 4px;
+    padding: 8px;
+  }
+  .container {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 768px) {
+  video {
+    margin: 2px;
+    width: 220px;
+    min-width: 160px;
+    max-width: 180px;
+    height: 200px;
+    min-height: 160px;
+    max-width: 200px;
+  }
+  .main__left {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .subheader {
+    margin: 4px;
+    padding: 10px;
+  }
 }

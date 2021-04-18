@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meet Call</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body id="home">
+<%- include('./partials/header.ejs') %>
+
+<main id="home">
+  <nav class="navbar">
+    <h3>Meet Call</h3>
+  </nav>
   <div class="container">
     <div class="main_join">
       <div class="action_rooms">
@@ -15,14 +11,14 @@
         <button class="btn action_rooms__btn" onClick="createRoom()">CREATE ROOM</button>
       </div>
 
-      <form action="/join-room" method="POST" class="form_join" style="display: none;">
+      <form action="/join-room" method="POST" class="form_join">
         <p>Join Room</p>
         <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
         <input type="text" class="form-control" name="roomId" id="roomId" placeholder="Code meeting" required>
         <button class="btn">JOIN</button>
       </form>
       
-      <form action="/create-room" method="POST" class="form_create" style="display: none;">
+      <form action="/create-room" method="POST" class="form_create">
         <p>Create Room</p>
         <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
         <button class="btn">Create</button>
@@ -32,5 +28,5 @@
   </div>
 
   <script src="form.js"></script>
-</body>
-</html>
+
+<%- include('./partials/footer.ejs') %>

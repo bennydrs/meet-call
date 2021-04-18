@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <title>Zoom Clone</title>
-</head>
-<body>
+<%- include('./partials/header.ejs') %>
+
   <div class="main">
     <div class="main__left">
       <nav class="navbar">
-        <h2>Meet Call</h2>
+        <h3>Meet Call</h3>
         <i class="fas fa-comment-dots message_icon"></i>
       </nav>
       <div class="subheader">
@@ -40,9 +31,10 @@
         </div>
       </div>
     </div>
-    <div class="main__right">
+    <div class="main__right show">
       <div class="main__header">
         <h5>Chat</h5>
+        <i class="fas fa-times close"></i>
       </div>
       <div class="main__chat_window">
         <div class="messages"></div>
@@ -63,5 +55,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
   <script src="script.js"></script>
-</body>
-</html>
+
+<%- include('./partials/footer.ejs') %>

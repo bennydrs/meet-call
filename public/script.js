@@ -4,7 +4,7 @@ const myVideo = document.createElement('video')
 myVideo.muted = true
 
 if (username === '' && uid === '') {
-  window.location.replace('http://localhost:3000');
+  window.location.replace('/')
 }
 
 const peer = new Peer()
@@ -70,7 +70,6 @@ navigator.mediaDevices.getUserMedia({
 // disconect user
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
-  console.log(userId);
 })
 
 // peer join room
@@ -142,20 +141,46 @@ const playStop = () => {
 
 const setStopVideo = () => {
   const html = `<i class="fas fa-video"></i>`
-  document.querySelector('.main__video_button').innerHTML = html;
+  document.querySelector('.main__video_button').innerHTML = html
 }
 
 const setPlayVideo = () => {
   const html = `<i class="stop fas fa-video-slash"></i>`
-  document.querySelector('.main__video_button').innerHTML = html;
+  document.querySelector('.main__video_button').innerHTML = html
 }
+
+const mainRight = document.querySelector('.main__right')
+const mainLeft = document.querySelector('.main__left')
 
 // show and hide main right
 const messageIcon = document.querySelector('.message_icon')
 messageIcon.addEventListener('click', () => {
-  document.querySelector('.main__right').classList.toggle('hide')
-  document.querySelector('.main__left').classList.toggle('is-full-width')
+  mainRight.classList.toggle('show')
+  mainLeft.classList.toggle('is-full-width')
 })
+document.querySelector('.close').addEventListener('click', () => {
+  mainRight.classList.add('show')
+  mainLeft.classList.remove('is-full-width')
+})
+
+// autohide
+let width = window.innerWidth
+const autoHide = () => {
+  if (width > 576 && width < 992) {
+    mainRight.classList.remove('show')
+    mainLeft.classList.add('is-full-width')
+  } else {
+    mainRight.classList.add('show')
+
+  }
+}
+
+autoHide()
+
+window.addEventListener("resize", () => {
+  width = window.innerWidth
+  autoHide()
+});
 
 // copy code meet
 const codeMeetEl = document.getElementById('code_meet')
