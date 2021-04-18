@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const peerServer = ExpressPeerServer(server, {
   debug: true
 })
-const port = 5000
+const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
 
