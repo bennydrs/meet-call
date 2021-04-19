@@ -237,12 +237,13 @@ video {
   height: 40px;
   padding: 10px;
   font-size: 14px;
-  margin-right: 3px;
+  margin: 3px;
 }
 
 /* button */
 .btn {
   padding: 10px;
+  margin: 3px;
   height: 40px;
   border: none;
   background-color: #51b56d;
@@ -331,8 +332,7 @@ form p {
     padding: 8px;
   }
   .container {
-    flex-direction: column-reverse;
-    justify-content: space-evenly;
+    max-width: 500px;
   }
 }
 
@@ -353,5 +353,26 @@ form p {
   .subheader {
     margin: 4px;
     padding: 10px;
+  }
+  .container {
+    max-width: 720px;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+  }
+  .form_join {
+    display: none;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 880px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 992px;
   }
 }

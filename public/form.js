@@ -7,5 +7,5 @@ const createRoom = () => {
 }
 const joinRoom = () => {
   create.style = "display: none"
-  join.style = "display: block"
+  join.style = "display: contents"
 }
