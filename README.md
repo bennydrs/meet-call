@@ -1,4 +1,4 @@
 # Meet-call
 video chat with node js
 
-## <a href="https://meetcallapp.herokuapp.com" target="_blank">Live Demo</a>
+## <a href="https://meet-call.fly.dev/" target="_blank">Live Demo</a>
